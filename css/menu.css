@@ -1,0 +1,237 @@
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-mobile {
+  display: none;
+}
+
+.menu-links ul {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.font-1-logo {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--cor-p1);
+}
+
+.font-2-m-menu {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.77;
+}
+
+.font-2-m-menu li:hover {
+  color: var(--cor-p1);
+}
+
+#search {
+  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  border: 0;
+  outline: 0;
+  border-radius: 50px;
+  color: var(--cor-w);
+  background: var(--cor-g1);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.77;
+}
+
+.letras ul {
+  display: flex;
+  justify-content: space-between;
+  overflow-x: scroll;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.77;
+  text-align: center;
+  padding-bottom: 32px;
+  margin-bottom: 80px;
+}
+
+.letras ul::-webkit-scrollbar {
+  border-left: 200px solid red;
+
+  height: 5px;
+  width: 25px;
+}
+
+.letras ul::-webkit-scrollbar-track {
+  width: 25px;
+
+  border-radius: 10px;
+  background: var(--cor-g1);
+}
+
+.letras ul::-webkit-scrollbar-thumb {
+  width: 25px;
+
+  background-color: var(--cor-p1); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+.letras ul li:first-child {
+  padding: 8px 16px;
+  background: var(--cor-g1);
+  border-radius: 50px;
+}
+
+.letras ul li:not(:last-child) {
+  margin-right: 32px;
+}
+
+.letras ul li:hover {
+  border-color: var(--cor-p1);
+}
+
+.letras ul li {
+  cursor: pointer;
+  box-sizing: border-box;
+  flex-basis: calc(calc(100% / 9) - 28.44px);
+  flex-grow: 0;
+  flex-shrink: 0;
+  border: solid 2px var(--cor-g1);
+  background: var(--cor-g0);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+}
+
+::-webkit-input-placeholder {
+  color: var(--cor-w);
+}
+
+@media screen and (max-width: 320px) {
+  .header-mobile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .search-icon {
+    height: 32px;
+  }
+
+  .dropdown-icon {
+    height: 22px;
+    /* width: 45px; */
+  }
+
+  .menu-links ul {
+    display: none;
+  }
+
+  .menu-links.ativo ul {
+    background: var(--cor-g1);
+    border-radius: 08px;
+    z-index: 999;
+    display: block;
+    position: absolute;
+    width: 60vw;
+    top: 60px;
+    right: 20px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    text-align: right;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .menu-links.ativo ul::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-bottom: solid 15px var(--cor-g1);
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+  }
+
+  .menu-links ul li {
+    margin: 10px 0px;
+    /* max-width: 10ch; */
+  }
+
+  #search {
+    display: none;
+  }
+
+  .nav-bar {
+    flex-wrap: wrap;
+  }
+
+  .container {
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .letras ul li {
+    font-size: 0.85rem;
+    padding: 05px 10px;
+    flex-basis: calc(calc(100% / 3) - 50px);
+  }
+
+  .letras ul li:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  .letras ul li:first-child {
+    padding: 05px 10px;
+  }
+
+  .letras ul {
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (min-width: 319px) {
+  .search-icon.active {
+    display: none;
+  }
+
+  #search-mobile {
+    box-sizing: border-box;
+    background: url("../img/icons/search.svg") no-repeat right 5px center;
+    color: var(--cor-w);
+    background-size: 20px;
+    background-color: var(--cor-g1);
+    border: none;
+    padding: 5px 35px 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.125rem;
+    animation-name: searchShow1;
+    animation-duration: 0.3s;
+    display: none;
+  }
+
+  #search-mobile.active {
+    display: block;
+    animation-duration: 0.3s;
+  }
+
+  @keyframes searchShow1 {
+    from {
+      transform: translate3d(80px, 0, 0);
+    }
+    to {
+      transform: translate3d(0px, 0, 0);
+    }
+  }
+}

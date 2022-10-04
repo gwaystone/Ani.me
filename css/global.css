@@ -1,0 +1,58 @@
+:root {
+  --cor-g0: #06090f;
+  --cor-g1: #151b26;
+  --cor-g2: #bfbfbf;
+  --cor-w: #fff;
+  --cor-p1: #00a3ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+body {
+  background: var(--cor-g0);
+  color: white;
+}
+
+.btn {
+  margin: 0 auto;
+  display: inline-block;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.77;
+  padding: 8px 54px;
+  background: var(--cor-g1);
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.btn:hover {
+  background: var(--cor-p1);
+  color: var(--cor-g1);
+}
+
+footer span {
+  display: block;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.22;
+  margin-bottom: 48px;
+  color: var(--cor-g2);
+  text-align: center;
+}
+
+@media screen and (max-width: 320px) {
+  footer span {
+    font-size: 0.9rem;
+  }
+}
