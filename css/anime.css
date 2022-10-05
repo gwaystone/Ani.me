@@ -187,7 +187,12 @@ section.comments {
     font-size: 1.5rem;
   }
 
+  .sinopse-img {
+    display: none;
+  }
+
   div.most-watched {
+    display: none;
     margin-top: 20px;
   }
 
@@ -204,6 +209,6 @@ section.comments {
   }
 
   .comment-single img {
-    height: 80px;
+    height: 60px;
   }
 }
