@@ -1,0 +1,209 @@
+#anime-single {
+  margin: 80px 0px 80px 0px;
+}
+
+h1.anime-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 36px;
+}
+
+h2.most-watched {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--cor-g2);
+  margin-bottom: 36px;
+}
+
+div.most-watched ul {
+  margin: 0;
+}
+
+div.most-watched li {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background: var(--cor-g1);
+  margin-bottom: 14px;
+}
+
+div.most-watched li div {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+div.most-watched .mw-anime-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.16;
+}
+
+div.most-watched li div .release {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.18;
+  letter-spacing: 0.07em;
+  color: var(--cor-g2);
+}
+
+#anime-single .grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+section.sinopse {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr 4fr;
+  margin-bottom: 80px;
+}
+
+section.sinopse img {
+  width: 100%;
+  display: block;
+}
+
+section.sinopse .sinopse-content ul {
+  margin: 0px 0px 47px 0px;
+}
+
+section.sinopse .sinopse-content p {
+  margin: 0;
+}
+
+section.sinopse .sinopse-content .info {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+section.sinopse .sinopse-content .info-content {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.18;
+  color: var(--cor-g2);
+}
+
+section.sinopse .sinopse-content .sinopse-paragraph-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+section.sinopse .sinopse-content .sinopse-paragraph-content {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-align: justify;
+  color: var(--cor-g2);
+}
+
+section.comments .comment-single {
+  display: flex;
+  gap: 30px;
+}
+
+section.comments {
+  margin-bottom: 80px;
+}
+
+.comment-content-wrapper {
+  padding: 5px;
+}
+
+.comment-content-wrapper span {
+  display: block;
+}
+
+.comment-content-wrapper .profile-name {
+  margin-bottom: 14px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.16;
+  text-align: justify;
+}
+
+.comment-content-wrapper .comment-content {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.18;
+  text-align: justify;
+}
+
+.comments-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.comment-single:nth-child(1) {
+  padding-bottom: 15px;
+  border-bottom: solid 2px var(--cor-g1);
+}
+
+.comment-single:nth-child(2) {
+  margin-top: 23px;
+}
+
+@media screen and (max-width: 320px) {
+  #anime-single .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #anime-single {
+    margin: 20px 0px 20px 0px;
+  }
+
+  h1.anime-title,
+  h2.most-watched {
+    font-size: 1.5rem;
+  }
+
+  div.most-watched {
+    margin-top: 20px;
+  }
+
+  section.sinopse {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+    margin-bottom: 80px;
+  }
+
+  section.sinopse .sinopse-content .sinopse-paragraph-content {
+    text-align: justify;
+    font-size: 1rem;
+  }
+
+  .comment-single img {
+    height: 80px;
+  }
+}

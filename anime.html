@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ani.me</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Rubik:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="container">
+      <div class="nav-bar">
+        <h1 class="font-1-logo">Ani.me</h1>
+        <div>
+          <nav class="menu-links" aria-label="Primário">
+            <ul class="font-2-m-menu">
+              <li><a href="#inicio">Início</a></li>
+              <li><a href="#Lista">Lista</a></li>
+              <li><a href="#Generos">Gêneros</a></li>
+              <li><a href="#new">Novos Episódios</a></li>
+              <input type="font-2-m-search" id="search" name="q" placeholder="Buscar" />
+            </ul>
+          </nav>
+        </div>
+        <div class="header-mobile">
+          <img src="./img/icons/search.svg" class="search-icon" alt="" />
+          <input type="font-2-m-search" id="search-mobile" name="q" placeholder="Buscar" />
+          <img src="./img/icons/menu.svg" class="dropdown-icon" alt="" data-menu="menu" />
+        </div>
+      </div>
+    </header>
+    <main id="anime-single">
+      <div class="container grid">
+        <div class="video">
+          <h1 class="anime-title">Darling in the Franxx - Episódio 1</h1>
+          <img src="./img/lorem-picsum.png" alt="" />
+        </div>
+        <div class="most-watched">
+          <h2 class="most-watched">Mais assistidos</h2>
+          <ul>
+            <li>
+              <img src="./img/most watched/img-3.png" alt="Naruto Shippuden" />
+              <div>
+                <h3 class="mw-anime-title">Naruto Shippuden</h3>
+                <span class="release">2007</span>
+              </div>
+            </li>
+            <li>
+              <img src="./img/most watched/img-2.png" alt="One Piece" />
+              <div>
+                <h3 class="mw-anime-title">One Piece</h3>
+                <span class="release">1999</span>
+              </div>
+            </li>
+            <li>
+              <img src="./img/most watched/img-1.png" alt="Shingeki No Kyojin" />
+              <div>
+                <h3 class="mw-anime-title">Shingeki No Kyojin</h3>
+                <span class="release">2013</span>
+              </div>
+            </li>
+            <li>
+              <img src="./img/most watched/img.png" alt="Haikyuu!!" />
+              <div>
+                <h3 class="mw-anime-title">Haikyuu!!</h3>
+                <span class="release">2014</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <section class="sinopse container">
+      <div class="sinopse-img">
+        <img src="./img/img-15.png" alt="Darling in the Franxx" />
+      </div>
+      <div class="sinopse-content">
+        <ul>
+          <li><span class="info">Duração:</span> <span class="info-content">24 Min.</span></li>
+          <li><span class="info">Estúdio:</span> <span class="info-content">Trigger</span></li>
+          <li><span class="info">Gênero:</span> <span class="info-content">Drama, Ficção científica, Romance</span></li>
+        </ul>
+        <span class="sinopse-paragraph-title">Sinopse:</span>
+        <p class="sinopse-paragraph-content">
+          Darling in the Franxx se passa em um futuro distópico e pós-apocalíptico onde os remanescentes da civilização
+          humana abandonaram a superfície do planeta. Adultos e crianças existem em ambientes contrastantes entre si. Os
+          adultos vivem em cidades tecnológicas (latifúndios) chamados de "plantações" (plantations). As crianças são
+          chamadas de "parasitas", sendo elas destituídos de individualidade, e educadas apenas para pilotarem Franxxs
+          em pares (um menino e uma menina) para defender a humanidade.
+        </p>
+      </div>
+    </section>
+    <section class="comments container">
+      <h2 class="comments-title">Comentários</h2>
+      <ul class="comments-wrapper">
+        <li class="comment-single">
+          <img src="./img/comments/profile-pic-1.png" alt="" class="profile-icon" />
+          <div class="comment-content-wrapper">
+            <span class="profile-name">Ana Júlia</span>
+            <span class="comment-content">Episódio muito top, já voltou muito bom!</span>
+          </div>
+        </li>
+        <li class="comment-single">
+          <img src="./img/comments/profile-pic.png" alt="" class="profile-icon" />
+          <div class="comment-content-wrapper">
+            <span class="profile-name">Bruno San</span>
+            <span class="comment-content">Primeira vez assistindo e já estou adorando :)</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="container">
+      <h2 class="font-1-xl anime-recent">Relacionados</h2>
+      <div class="grid-recent">
+        <div class="anime-item">
+          <div class="cover">
+            <img src="./img/img-5.png" alt="Meng Qi Shi Shen" />
+          </div>
+          <span class="anime-title font-1-m">Meng Qi Shi Shen</span>
+        </div>
+
+        <div class="anime-item">
+          <div class="cover">
+            <img src="./img/img-4.png" alt="Made in Abyss" />
+          </div>
+          <span class="anime-title font-1-m">Made in Abyss</span>
+        </div>
+
+        <div class="anime-item">
+          <div class="cover">
+            <img src="./img/img-3.png" alt="Prima Doll" />
+          </div>
+          <span class="anime-title font-1-m">Prima Doll</span>
+        </div>
+
+        <div class="anime-item">
+          <div class="cover">
+            <img src="./img/img-2.png" alt="Isekai Ojisan" />
+          </div>
+          <span class="anime-title font-1-m">Isekai Ojisan</span>
+        </div>
+
+        <div class="anime-item">
+          <div class="cover">
+            <img src="./img/img-1.png" alt="Yuusha, Yamemasu" />
+          </div>
+          <span class="anime-title font-1-m">Yuusha, Yamemasu</span>
+        </div>
+
+        <div class="anime-item">
+          <div class="cover">
+            <img src="./img/img.png" alt="Kami Kuzu Idol" />
+          </div>
+          <span class="anime-title font-1-m">Kami Kuzu Idol</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container"><span>Todos os direitos reservados aos criadores e produtores dos animes</span></footer>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
