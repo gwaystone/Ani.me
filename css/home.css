@@ -152,7 +152,16 @@ span.anime-title {
   margin-bottom: 40px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
+  .grid-latest {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 20px;
+    margin-bottom: 42px;
+  }
+}
+
+@media screen and (max-width: 425px) {
   .grid-latest,
   .grid-recent {
     grid-template-columns: 1fr 1fr;
@@ -169,16 +178,20 @@ span.anime-title {
   }
 
   .font-2-m {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3; /* number of lines to show */
     line-clamp: 3;
     -webkit-box-orient: vertical;
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding: 0;
-    max-width: 29ch;
     line-height: 1.6;
+    color: var(--cor-g2);
+    z-index: 1;
   }
 
   .font-1-xxl-bold {
@@ -202,5 +215,20 @@ span.anime-title {
   .font-2-xl {
     font-size: 1.1rem;
     font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .font-2-m {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 0.8rem;
+    padding: 0;
+    max-width: 29ch;
+    line-height: 1.6;
   }
 }

@@ -51,7 +51,17 @@ footer span {
   text-align: center;
 }
 
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 40px;
+  }
+}
+
 @media screen and (max-width: 320px) {
+  .container {
+    padding: 20px;
+  }
+
   footer span {
     font-size: 0.9rem;
   }

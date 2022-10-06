@@ -23,11 +23,17 @@ const searchBtn = document.querySelector(".search-icon");
 const searchMobile = document.querySelector("#search-mobile");
 const logo = document.querySelector(".font-1-logo");
 
+console.log(window);
+
 searchBtn.addEventListener("click", (e) => {
   searchBtn.classList.add("active");
   searchMobile.classList.add("active");
   searchMobile.focus();
-  logo.style.display = "none";
+
+  if (window.innerWidth <= 767) {
+    console.log("aaaa");
+    logo.style.display = "none";
+  }
 });
 
 searchMobile.addEventListener("focusout", () => {

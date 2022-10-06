@@ -113,7 +113,77 @@
   color: var(--cor-w);
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 1024px) {
+  .menu-links ul {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-links ul {
+    display: none;
+  }
+
+  .header-mobile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .font-2-m-menu {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.77;
+  }
+
+  .letras ul {
+    margin-bottom: 40px;
+  }
+
+  .menu-links.ativo ul {
+    background: var(--cor-g1);
+    border-radius: 08px;
+    z-index: 999;
+    display: block;
+    position: absolute;
+    width: 250px;
+    top: 70px;
+    right: 40px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: right;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .menu-links.ativo ul::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-bottom: solid 15px var(--cor-g1);
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+  }
+
+  #search {
+    display: none;
+  }
+
+  .search-icon {
+    height: 32px;
+  }
+
+  .dropdown-icon {
+    height: 22px;
+    /* width: 45px; */
+  }
+}
+
+@media screen and (max-width: 425px) {
   .header-mobile {
     display: flex;
     align-items: center;
