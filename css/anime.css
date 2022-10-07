@@ -59,8 +59,12 @@ div.most-watched li div .release {
 
 #anime-single .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 20px;
+}
+
+div.most-watched img {
+  height: 103.5px;
 }
 
 section.sinopse {
@@ -172,7 +176,68 @@ section.comments {
   margin-top: 23px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 1024px) {
+  #anime-single {
+    margin: 20px 0px 20px 0px;
+  }
+
+  #anime-single .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  div.most-watched ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  div.most-watched {
+    margin-top: 40px;
+  }
+
+  div.most-watched li {
+    flex: 0 0 calc(25% - 15px);
+  }
+
+  div.most-watched li img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  #anime-single .video img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #anime-single {
+    margin: 40px 0px;
+  }
+
+  #anime-single .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  div.most-watched {
+    display: none;
+  }
+
+  .sinopse-img {
+    display: none;
+  }
+
+  section.sinopse {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 465px) {
   #anime-single .grid {
     display: grid;
     grid-template-columns: 1fr;
