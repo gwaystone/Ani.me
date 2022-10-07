@@ -176,6 +176,18 @@ section.comments {
   margin-top: 23px;
 }
 
+.sinopse-content ul li {
+  margin-top: 5px;
+}
+
+.sinopse-paragraph-content.skeleton {
+  height: 11rem;
+}
+
+section div.sinopse-img img {
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   #anime-single {
     margin: 20px 0px 20px 0px;

@@ -39,6 +39,31 @@ body {
   color: var(--cor-g1);
 }
 
+.skeleton:empty {
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  height: auto;
+  -webkit-animation: animation-c7515d 1.5s ease-in-out 0.5s infinite;
+  animation: animation-c7515d 1.5s ease-in-out 0.5s infinite;
+}
+
+.skeleton:empty:before {
+  content: "\00a0";
+}
+
+@keyframes animation-c7515d {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 footer span {
   display: block;
   font-family: "Inter";
