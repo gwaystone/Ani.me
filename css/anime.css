@@ -120,6 +120,12 @@ section.sinopse .sinopse-content .sinopse-paragraph-content {
   line-height: 1.6;
   text-align: justify;
   color: var(--cor-g2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* number of lines to show */
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
 section.comments .comment-single {
@@ -184,8 +190,8 @@ section.comments {
   height: 11rem;
 }
 
-section div.sinopse-img img {
-  display: none;
+.sinopse-img img {
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 1024px) {

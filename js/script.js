@@ -1,3 +1,12 @@
+const usetube = require("usetube");
+
+async function test() {
+  const video = await usetube.searchVideo("Lorn");
+  console.log(video);
+}
+
+test();
+
 // Mobile Menu
 const menuBtn = document.querySelector('[data-menu="menu"]');
 const menu = document.querySelector(".menu-links");
@@ -62,11 +71,34 @@ async function getAnimeInfo() {
 async function addAnimeDetails() {
   const animeDetails = await getAnimeInfo();
   const pageAnimeTitle = document.querySelector("#anime-single .video h1");
-  const pageAnimeDuracao = document.querySelector(".sinopse-content li.duracao");
-  const pageAnimeStudio = document.querySelector(".sinopse-content li.studio");
   const pageAnimeEpisodes = document.querySelector(".sinopse-content li.episodes");
+  const pageAnimeStatus = document.querySelector(".sinopse-content li.status");
+  const pageAnimeGeneros = document.querySelector(".sinopse-content li.genero");
+  const isAnimeFinished = animeDetails.status === "Completed" ? "Completo" : "Lançando";
+
   const pageAnimePosterWrapper = document.querySelector(".sinopse-img");
   const sinopse = document.querySelector(".sinopse-paragraph-content");
+
+  // Adiciona os valores e remove a class Skeleton
+  pageAnimeTitle.classList.remove("skeleton");
+  pageAnimeTitle.innerText = `${animeDetails.animeTitle} (${animeDetails.releasedDate})`;
+  pageAnimeEpisodes.innerHTML = `<span class="info">Duração: </span><span class="info-content">${animeDetails.episodesList.length} Episódios.</span>`;
+  pageAnimeStatus.innerHTML = `<span class="info">Status: </span><span class="info-content">${isAnimeFinished}.</span>`;
+  pageAnimeGeneros.innerHTML = `<span class="info">Gêneros: </span><span class="info-content">${animeDetails.genres
+    .slice(0, 3)
+    .join(", ")}.</span>`;
+  sinopse.classList.remove("skeleton");
+  sinopse.innerText = `${animeDetails.synopsis}`;
+
+  const poster = document.createElement("img");
+  poster.src = animeDetails.animeImg;
+  poster.alt = animeDetails.animeTitle;
+  pageAnimePosterWrapper.classList.remove("skeleton");
+  pageAnimePosterWrapper.append(poster);
+
+  console.log(poster);
+
+  console.log(animeDetails);
 }
 
 addAnimeDetails();
