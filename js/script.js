@@ -57,23 +57,38 @@ async function getAnimeInfo() {
   const fetchDetails = await fetch(urlFetchDetails);
   const fetchDetailsJson = await fetchDetails.json();
 
-  const fetchVideoTrailerUrl = `https://kitsu.io/api/edge/anime?filter[text]=${animeSearch}`;
-  const fetchKitsu = await fetch(urlFetchDetails);
+  return fetchDetailsJson;
+}
+
+async function getTrailerData() {
+  // Define o parámetro de busca através da URL
+  const queryString = window.location.search;
+  const searchParams = new URLSearchParams(queryString);
+  const animeSearch = searchParams.get("anime");
+
+  // Faz busca na API do Kitsu para pegar informações complementares
+  const fetchKitsuUrl = `https://kitsu.io/api/edge/anime?filter[text]=${animeSearch}`;
+  const fetchKitsu = await fetch(fetchKitsuUrl);
   const kitsuDetails = await fetchKitsu.json();
 
-  return fetchDetailsJson;
+  return kitsuDetails;
 }
 
 async function addAnimeDetails() {
   const animeDetails = await getAnimeInfo();
+  const kitsuDetails = await getTrailerData();
+
+  // Pega os elementos DOM da página
   const pageAnimeTitle = document.querySelector("#anime-single .video h1");
   const pageAnimeEpisodes = document.querySelector(".sinopse-content li.episodes");
   const pageAnimeStatus = document.querySelector(".sinopse-content li.status");
   const pageAnimeGeneros = document.querySelector(".sinopse-content li.genero");
-  const isAnimeFinished = animeDetails.status === "Completed" ? "Completo" : "Lançando";
-
   const pageAnimePosterWrapper = document.querySelector(".sinopse-img");
   const sinopse = document.querySelector(".sinopse-paragraph-content");
+  const videoWrapper = document.querySelector(".video-embed");
+
+  // Operador ternário para traduzir o status do anime
+  const isAnimeFinished = animeDetails.status === "Completed" ? "Completo" : "Lançando";
 
   // Adiciona os valores e remove a class Skeleton
   pageAnimeTitle.classList.remove("skeleton");
@@ -86,11 +101,20 @@ async function addAnimeDetails() {
   sinopse.classList.remove("skeleton");
   sinopse.innerText = `${animeDetails.synopsis}`;
 
+  // Adiciona o poster
   const poster = document.createElement("img");
   poster.src = animeDetails.animeImg;
   poster.alt = animeDetails.animeTitle;
   pageAnimePosterWrapper.classList.remove("skeleton");
   pageAnimePosterWrapper.append(poster);
+
+  // Pega o Trailer ID do YouTube
+  const trailerID = kitsuDetails.data[0].attributes.youtubeVideoId;
+  const youtubeEmbed = `<iframe src="https://www.youtube.com/embed/${trailerID}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  videoWrapper.outerHTML = youtubeEmbed;
+
+  console.log(youtubeEmbed);
+  console.dir(videoWrapper);
 }
 
 addAnimeDetails();
