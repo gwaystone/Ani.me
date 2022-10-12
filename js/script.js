@@ -56,6 +56,11 @@ async function getAnimeInfo() {
   const urlFetchDetails = `https://gogoanime.herokuapp.com/anime-details/${anime}`;
   const fetchDetails = await fetch(urlFetchDetails);
   const fetchDetailsJson = await fetchDetails.json();
+
+  const fetchVideoTrailerUrl = `https://kitsu.io/api/edge/anime?filter[text]=${animeSearch}`;
+  const fetchKitsu = await fetch(urlFetchDetails);
+  const kitsuDetails = await fetchKitsu.json();
+
   return fetchDetailsJson;
 }
 
@@ -86,10 +91,6 @@ async function addAnimeDetails() {
   poster.alt = animeDetails.animeTitle;
   pageAnimePosterWrapper.classList.remove("skeleton");
   pageAnimePosterWrapper.append(poster);
-
-  console.log(poster);
-
-  console.log(animeDetails);
 }
 
 addAnimeDetails();
