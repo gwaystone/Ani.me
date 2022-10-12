@@ -1,12 +1,3 @@
-const usetube = require("usetube");
-
-async function test() {
-  const video = await usetube.searchVideo("Lorn");
-  console.log(video);
-}
-
-test();
-
 // Mobile Menu
 const menuBtn = document.querySelector('[data-menu="menu"]');
 const menu = document.querySelector(".menu-links");
