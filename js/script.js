@@ -118,13 +118,22 @@ async function addAnimeDetails() {
 }
 
 async function recentEpisodes() {
+  const animeItemWrapper = document.querySelector("div.grid-latest");
+  const popularItemWrapper = document.querySelector("div.grid-recent");
+
+  // Fetch últimos episódios
   const urlFetch = "https://gogoanime.herokuapp.com/recent-release?page=1";
   const fetchRecent = await fetch(urlFetch);
   const recentJson = await fetchRecent.json();
 
+  // Fetch Popular
+  const urlFetchPopular = "https://gogoanime.herokuapp.com/recent-release?page=1";
+  const fetchPopular = await fetch(urlFetch);
+  const popularJson = await fetchPopular.json();
+
+  // Adiciona os últimos episódios ao grid.
   const recentEpidoes = recentJson.map((e) => {
     console.log(e);
-    const animeItemWrapper = document.querySelector("div.grid-latest");
     const animeItem = document.createElement("a");
     animeItem.setAttribute("href", "./anime.html" + "?anime=" + e.animeTitle);
     animeItem.classList.add("anime-item");
@@ -140,6 +149,6 @@ async function recentEpisodes() {
   });
 }
 
-if (window.location.pathname === '/') recentEpisodes();
+if (window.location.pathname === "/") recentEpisodes();
 
 if (window.location.pathname.includes("anime.html")) addAnimeDetails();
