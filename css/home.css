@@ -129,9 +129,13 @@ span.anime-title {
   cursor: pointer;
 }
 
+.anime-item .cover img{
+  height: 318px;
+}
+
 .grid-latest {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 48px 20px;
   margin-bottom: 42px;
 }

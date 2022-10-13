@@ -117,4 +117,29 @@ async function addAnimeDetails() {
   console.dir(videoWrapper);
 }
 
-addAnimeDetails();
+async function recentEpisodes() {
+  const urlFetch = "https://gogoanime.herokuapp.com/recent-release?page=1";
+  const fetchRecent = await fetch(urlFetch);
+  const recentJson = await fetchRecent.json();
+
+  const recentEpidoes = recentJson.map((e) => {
+    console.log(e);
+    const animeItemWrapper = document.querySelector("div.grid-latest");
+    const animeItem = document.createElement("a");
+    animeItem.setAttribute("href", "./anime.html" + "?anime=" + e.animeTitle);
+    animeItem.classList.add("anime-item");
+    animeItem.innerHTML = `
+          <div class="cover">
+            <span class="episode font-2-mr">Episódio ${e.episodeNum}</span>
+            <img src="${e.animeImg}" alt="${e.animeTitle}" />
+          </div>
+          <span class="anime-title font-1-m">${e.animeTitle}</span>
+    `;
+    animeItemWrapper.append(animeItem);
+    console.log(animeItem);
+  });
+}
+
+if (window.location.pathname === '/') recentEpisodes();
+
+if (window.location.pathname.includes("anime.html")) addAnimeDetails();
