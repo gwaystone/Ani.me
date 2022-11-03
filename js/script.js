@@ -127,26 +127,49 @@ async function recentEpisodes() {
   const recentJson = await fetchRecent.json();
 
   // Fetch Popular
-  const urlFetchPopular = "https://gogoanime.herokuapp.com/recent-release?page=1";
-  const fetchPopular = await fetch(urlFetch);
+  const urlFetchPopular = "https://gogoanime.consumet.org/popular";
+  const fetchPopular = await fetch(urlFetchPopular);
   const popularJson = await fetchPopular.json();
 
   // Adiciona os últimos episódios ao grid.
-  const recentEpidoes = recentJson.map((e) => {
-    console.log(e);
-    const animeItem = document.createElement("a");
-    animeItem.setAttribute("href", "./anime.html" + "?anime=" + e.animeTitle);
-    animeItem.classList.add("anime-item");
-    animeItem.innerHTML = `
-          <div class="cover">
-            <span class="episode font-2-mr">Episódio ${e.episodeNum}</span>
-            <img src="${e.animeImg}" alt="${e.animeTitle}" />
-          </div>
-          <span class="anime-title font-1-m">${e.animeTitle}</span>
-    `;
-    animeItemWrapper.append(animeItem);
-    console.log(animeItem);
+  const recentEpisodes = recentJson.map((e, i) => {
+    if (i < 10) {
+      const animeItem = document.createElement("a");
+      animeItem.setAttribute("href", "./anime.html" + "?anime=" + e.animeTitle);
+      animeItem.classList.add("anime-item");
+      animeItem.innerHTML = `
+      <div class="cover">
+      <span class="episode font-2-mr">Episódio ${e.episodeNum}</span>
+      <img src="${e.animeImg}" alt="${e.animeTitle}" />
+      </div>
+      <span class="anime-title font-1-m">${e.animeTitle}</span>
+      `;
+
+      animeItemWrapper.append(animeItem);
+      if (document.querySelector(".lds-ellipsis")) document.querySelector(".lds-ellipsis").remove();
+    }
   });
+
+  const popularEpisodes = popularJson.map((e, i) => {
+    if (i < 6) {
+      const animeItem = document.createElement("a");
+      animeItem.setAttribute("href", "./anime.html" + "?anime=" + e.animeTitle);
+      animeItem.classList.add("anime-item");
+      animeItem.innerHTML = `
+      <div class="cover">
+      
+      <img src="${e.animeImg}" alt="${e.animeTitle}" />
+      </div>
+      <span class="anime-title font-1-m">${e.animeTitle}</span>
+      `;
+      popularItemWrapper.append(animeItem);
+      if (document.querySelector(".lds-ellipsis")) document.querySelector(".lds-ellipsis").remove();
+    }
+  });
+
+  // Add style de Grid de volta aos Wrappers
+  popularItemWrapper.style.cssText = "display:grid";
+  animeItemWrapper.style.cssText = "display:grid";
 }
 
 if (window.location.pathname === "/") recentEpisodes();
