@@ -172,6 +172,18 @@ async function recentEpisodes() {
   animeItemWrapper.style.cssText = "display:grid";
 }
 
+function searchAnime() {
+  const searchBar = document.querySelector("#search");
+  console.log(window.location);
+  searchBar.addEventListener("keyup", (event) => {
+    if (event.code === "Enter") {
+      window.location.href = window.location.origin + "/anime.html?anime=" + searchBar.value;
+    }
+  });
+}
+
+searchAnime();
+
 if (window.location.pathname === "/") recentEpisodes();
 
 if (window.location.pathname.includes("anime.html")) addAnimeDetails();
