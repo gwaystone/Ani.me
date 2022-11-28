@@ -47,13 +47,13 @@ async function getAnimeInfo() {
   const animeSearch = searchParams.get("anime");
 
   // Busca pelo anime usando a API do gogoanime com base no parámetro da URL e retorna o animeId
-  const urlFetchSearch = `https://gogoanime.herokuapp.com/search?keyw=${animeSearch}`;
+  const urlFetchSearch = `https://gogoanime.consumet.org/search?keyw=${animeSearch}`;
   const fetchSearch = await fetch(urlFetchSearch);
   const fetchSearchJson = await fetchSearch.json();
   const anime = fetchSearchJson[0].animeId;
 
   // Utiliza o animeId para buscar as informações do anime.
-  const urlFetchDetails = `https://gogoanime.herokuapp.com/anime-details/${anime}`;
+  const urlFetchDetails = `https://gogoanime.consumet.org/anime-details/${anime}`;
   const fetchDetails = await fetch(urlFetchDetails);
   const fetchDetailsJson = await fetchDetails.json();
 
@@ -112,9 +112,6 @@ async function addAnimeDetails() {
   const trailerID = kitsuDetails.data[0].attributes.youtubeVideoId;
   const youtubeEmbed = `<iframe src="https://www.youtube.com/embed/${trailerID}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
   videoWrapper.outerHTML = youtubeEmbed;
-
-  console.log(youtubeEmbed);
-  console.dir(videoWrapper);
 }
 
 async function recentEpisodes() {
@@ -122,7 +119,7 @@ async function recentEpisodes() {
   const popularItemWrapper = document.querySelector("div.grid-recent");
 
   // Fetch últimos episódios
-  const urlFetch = "https://gogoanime.herokuapp.com/recent-release?page=1";
+  const urlFetch = "https://gogoanime.consumet.org/recent-release?page=1";
   const fetchRecent = await fetch(urlFetch);
   const recentJson = await fetchRecent.json();
 
@@ -174,12 +171,45 @@ async function recentEpisodes() {
 
 function searchAnime() {
   const searchBar = document.querySelector("#search");
-  console.log(window.location);
-  searchBar.addEventListener("keyup", (event) => {
-    if (event.code === "Enter") {
+  const searchMobile = document.querySelector("#search-mobile");
+  const searchButton = document.querySelector("#search-btn");
+
+  searchBar.addEventListener("keyup", search);
+  searchMobile.addEventListener("keyup", searchMobileEvent);
+
+  searchButton.addEventListener("click", search);
+
+  function search(event) {
+    console.log(event);
+
+    if (event.type === "keyup") {
+      if (searchBar.value.length !== 0) {
+        searchButton.classList.add("ativo");
+      } else {
+        searchButton.classList.remove("ativo");
+      }
+    }
+
+    if (event.code === "Enter" || (event.type === "click" && searchBar.value.length !== 0)) {
       window.location.href = window.location.origin + "/anime.html?anime=" + searchBar.value;
     }
-  });
+
+    if (event.code === "Enter" || (event.type === "click" && searchBar.value.length === 0)) {
+      searchBar.classList.add("invalido");
+      console.log(searchBar.classList);
+    }
+  }
+
+  function searchMobileEvent(event) {
+    if (event.code === "Enter" && searchMobile.value.length !== 0) {
+      window.location.href = window.location.origin + "/anime.html?anime=" + searchMobile.value;
+    }
+
+    if (event.code === "Enter" && searchMobile.value.length === 0) {
+      searchMobile.classList.add("invalido");
+      console.log(searchBar.classList);
+    }
+  }
 }
 
 searchAnime();
