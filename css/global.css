@@ -52,6 +52,38 @@ body {
   content: "\00a0";
 }
 
+.error {
+  height: calc(100vh - 70px - 84px);
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  background: no-repeat url(../img/killua.jpg) rgba(6, 9, 15, 0.9);
+  background-blend-mode: overlay;
+  background-size: cover;
+  position: relative;
+  box-shadow: inset 0px 30px 30px var(--cor-g0), inset 0px -30px 30px var(--cor-g0);
+}
+
+.error h1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 300px;
+  color: var(--cor-p1);
+  z-index: 2;
+}
+
+.error h2 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--cor-w);
+  z-index: 2;
+  text-align: center;
+}
+
 @keyframes animation-c7515d {
   0% {
     opacity: 1;

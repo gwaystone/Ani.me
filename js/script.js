@@ -47,17 +47,21 @@ async function getAnimeInfo() {
   const animeSearch = searchParams.get("anime");
 
   // Busca pelo anime usando a API do gogoanime com base no parámetro da URL e retorna o animeId
-  const urlFetchSearch = `https://gogoanime.consumet.org/search?keyw=${animeSearch}`;
-  const fetchSearch = await fetch(urlFetchSearch);
-  const fetchSearchJson = await fetchSearch.json();
-  const anime = fetchSearchJson[0].animeId;
+  try {
+    const urlFetchSearch = `https://gogoanime.consumet.org/search?keyw=${animeSearch}`;
+    const fetchSearch = await fetch(urlFetchSearch);
+    const fetchSearchJson = await fetchSearch.json();
+    const anime = fetchSearchJson[0].animeId;
 
-  // Utiliza o animeId para buscar as informações do anime.
-  const urlFetchDetails = `https://gogoanime.consumet.org/anime-details/${anime}`;
-  const fetchDetails = await fetch(urlFetchDetails);
-  const fetchDetailsJson = await fetchDetails.json();
+    // Utiliza o animeId para buscar as informações do anime.
+    const urlFetchDetails = `https://gogoanime.consumet.org/anime-details/${anime}`;
+    const fetchDetails = await fetch(urlFetchDetails);
+    const fetchDetailsJson = await fetchDetails.json();
 
-  return fetchDetailsJson;
+    return fetchDetailsJson;
+  } catch (error) {
+    window.location.href = window.location.origin + "/404.html";
+  }
 }
 
 async function getTrailerData() {
@@ -197,6 +201,8 @@ function searchAnime() {
     if (event.code === "Enter" || (event.type === "click" && searchBar.value.length === 0)) {
       searchBar.classList.add("invalido");
       console.log(searchBar.classList);
+    } else {
+      searchBar.classList.remove("invalido");
     }
   }
 
@@ -207,7 +213,6 @@ function searchAnime() {
 
     if (event.code === "Enter" && searchMobile.value.length === 0) {
       searchMobile.classList.add("invalido");
-      console.log(searchBar.classList);
     }
   }
 }
