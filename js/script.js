@@ -195,7 +195,7 @@ function searchAnime() {
     }
 
     if (event.code === "Enter" || (event.type === "click" && searchBar.value.length !== 0)) {
-      window.location.href = window.location.origin + "/anime.html?anime=" + searchBar.value;
+      window.location.href = window.location.origin + "/search.html?q=" + searchBar.value;
     }
 
     if (event.code === "Enter" || (event.type === "click" && searchBar.value.length === 0)) {
@@ -208,7 +208,7 @@ function searchAnime() {
 
   function searchMobileEvent(event) {
     if (event.code === "Enter" && searchMobile.value.length !== 0) {
-      window.location.href = window.location.origin + "/anime.html?anime=" + searchMobile.value;
+      window.location.href = window.location.origin + "/search.html?q=" + searchMobile.value;
     }
 
     if (event.code === "Enter" && searchMobile.value.length === 0) {
@@ -217,8 +217,54 @@ function searchAnime() {
   }
 }
 
+async function searchResults() {
+  const searchQuery = new URLSearchParams(window.location.search);
+  const fetchUrl = "https://gogoanime.consumet.org/search?keyw=" + searchQuery.get("q");
+
+  // Start Fetch
+  const fetchQuery = await fetch(fetchUrl);
+  const bodyFetch = await fetchQuery.json();
+
+  // Alterar HTML
+  const searchHeader2 = document.querySelector(".font-1-xl.search-query");
+  searchHeader2.innerText = searchQuery.get("q");
+
+  // remove itens antigos
+  document.querySelector(".search-results").replaceChildren();
+
+  console.log(bodyFetch);
+
+  // Cria a lista
+  for (result of bodyFetch) {
+    // Cria HTML para cada item da Lista
+    const wrapperLi = document.createElement("li");
+    wrapperLi.setAttribute("class", "result-item");
+    wrapperLi.innerHTML = `
+    <a href="${window.location.origin}/anime.html?anime=${result.animeId}">
+    <div class="sinopse-img skeleton"></div>
+    <div class="result-container">
+    <h3 class="skeleton font-1-m">${result.animeTitle}</h3>
+    <p class="skeleton font-1-m">${result.status}</p>
+    </div>
+    </a>
+    `;
+
+    // Cria o Poster
+    const poster = document.createElement("img");
+    poster.src = result.animeImg;
+    poster.alt = result.animeTitle;
+    wrapperLi.querySelector(".sinopse-img").classList.remove("skeleton");
+    wrapperLi.querySelector(".sinopse-img").append(poster);
+
+    // Append HTML
+    document.querySelector(".search-results").append(wrapperLi);
+  }
+}
+
 searchAnime();
 
 if (window.location.pathname === "/") recentEpisodes();
 
 if (window.location.pathname.includes("anime.html")) addAnimeDetails();
+
+if (window.location.pathname.includes("search.html")) searchResults();
