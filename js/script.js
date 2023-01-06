@@ -221,43 +221,75 @@ async function searchResults() {
   const searchQuery = new URLSearchParams(window.location.search);
   const fetchUrl = "https://gogoanime.consumet.org/search?keyw=" + searchQuery.get("q");
 
-  // Start Fetch
-  const fetchQuery = await fetch(fetchUrl);
-  const bodyFetch = await fetchQuery.json();
-
   // Alterar HTML
   const searchHeader2 = document.querySelector(".font-1-xl.search-query");
   searchHeader2.innerText = searchQuery.get("q");
+
+  // Start Fetch
+  const fetchQuery = await fetch(fetchUrl);
+  const bodyFetch = await fetchQuery.json();
 
   // remove itens antigos
   document.querySelector(".search-results").replaceChildren();
 
   console.log(bodyFetch);
-
-  // Cria a lista
-  for (result of bodyFetch) {
-    // Cria HTML para cada item da Lista
-    const wrapperLi = document.createElement("li");
-    wrapperLi.setAttribute("class", "result-item");
-    wrapperLi.innerHTML = `
-    <a href="${window.location.origin}/anime.html?anime=${result.animeId}">
-    <div class="sinopse-img skeleton"></div>
-    <div class="result-container">
-    <h3 class="skeleton font-1-m">${result.animeTitle}</h3>
+  if (bodyFetch.length !== 0) {
+    // Cria a lista
+    for (result of bodyFetch) {
+      // Cria HTML para cada item da Lista
+      const wrapperLi = document.createElement("li");
+      wrapperLi.setAttribute("class", "result-item");
+      wrapperLi.innerHTML = `
+      <a href="${window.location.origin}/anime.html?anime=${result.animeId}">
+      <div class="sinopse-img skeleton"></div>
+      <div class="result-container">
+      <h3 class="skeleton font-1-m">${result.animeTitle}</h3>
     <p class="skeleton font-1-m">${result.status}</p>
     </div>
     </a>
     `;
 
-    // Cria o Poster
-    const poster = document.createElement("img");
-    poster.src = result.animeImg;
-    poster.alt = result.animeTitle;
-    wrapperLi.querySelector(".sinopse-img").classList.remove("skeleton");
-    wrapperLi.querySelector(".sinopse-img").append(poster);
+      // Cria o Poster
+      const poster = document.createElement("img");
+      poster.src = result.animeImg;
+      poster.alt = result.animeTitle;
+      wrapperLi.querySelector(".sinopse-img").classList.remove("skeleton");
+      wrapperLi.querySelector(".sinopse-img").append(poster);
 
-    // Append HTML
-    document.querySelector(".search-results").append(wrapperLi);
+      // Append HTML
+      document.querySelector(".search-results").append(wrapperLi);
+    }
+  }
+
+  // Se não existir anime, 404
+  else {
+    const errorMsg = document.createElement("div");
+    errorMsg.setAttribute("class", "error-not-found");
+    errorMsg.innerHTML = `
+    <div class='container'>
+    <h3>Anime não encontrado, tente buscar por outro termo.</h3>
+    </div>`;
+
+    errorMsg.style.cssText = `
+      height: calc(100vh - 454px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: no-repeat url(../img/killua.jpg) rgba(6, 9, 15, .9);
+      background-position: center center;
+      background-blend-mode: overlay;
+      background-size: cover;
+      position: relative;
+      box-shadow: inset 0px 35px 35px var(--cor-g0), inset 0px -35px 35px var(--cor-g0);
+      font-family: "Rubik";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 2.5rem;
+      color: var(--cor-p1);
+      z-index: 2;
+      text-align: center;`;
+
+    document.querySelector(".search-page").appendChild(errorMsg);
   }
 }
 
