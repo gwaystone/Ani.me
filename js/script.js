@@ -194,11 +194,11 @@ function searchAnime() {
       }
     }
 
-    if (event.code === "Enter" || (event.type === "click" && searchBar.value.length !== 0)) {
+    if (event.keyCode === 13 || (event.type === "click" && searchBar.value.length !== 0)) {
       window.location.href = window.location.origin + "/search.html?q=" + searchBar.value;
     }
 
-    if (event.code === "Enter" || (event.type === "click" && searchBar.value.length === 0)) {
+    if (event.keyCode === 13 || (event.type === "click" && searchBar.value.length === 0)) {
       searchBar.classList.add("invalido");
       console.log(searchBar.classList);
     } else {
@@ -207,11 +207,11 @@ function searchAnime() {
   }
 
   function searchMobileEvent(event) {
-    if (event.code === "Enter" && searchMobile.value.length !== 0) {
+    if (event.keyCode === 13 && searchMobile.value.length !== 0) {
       window.location.href = window.location.origin + "/search.html?q=" + searchMobile.value;
     }
 
-    if (event.code === "Enter" && searchMobile.value.length === 0) {
+    if (event.keyCode === 13 && searchMobile.value.length === 0) {
       searchMobile.classList.add("invalido");
     }
   }
