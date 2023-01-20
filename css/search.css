@@ -48,6 +48,29 @@
   object-fit: cover;
 }
 
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin-bottom: 60px;
+}
+
+.pagination-wrapper a {
+  padding: 8px 20px;
+  display: inline-block;
+  background: var(--cor-g1);
+  border-radius: 5px;
+  font-family: "Rubik";
+  font-weight: 500;
+  font-style: normal;
+}
+
+.pagination-wrapper a:hover {
+  background: var(--cor-p1);
+  color: var(--cor-g1);
+}
+
 @media screen and (max-width: 425px) {
   .search-results {
     grid-template-columns: 1fr;

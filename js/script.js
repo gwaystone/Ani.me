@@ -195,7 +195,7 @@ function searchAnime() {
     }
 
     if (event.keyCode === 13 || (event.type === "click" && searchBar.value.length !== 0)) {
-      window.location.href = window.location.origin + "/search.html?q=" + searchBar.value;
+      window.location.href = window.location.origin + "/search.html?q=" + searchBar.value + "&page=1";
     }
 
     if (event.keyCode === 13 || (event.type === "click" && searchBar.value.length === 0)) {
@@ -208,7 +208,7 @@ function searchAnime() {
 
   function searchMobileEvent(event) {
     if (event.keyCode === 13 && searchMobile.value.length !== 0) {
-      window.location.href = window.location.origin + "/search.html?q=" + searchMobile.value;
+      window.location.href = window.location.origin + "/search.html?q=" + searchMobile.value + "&page=1";
     }
 
     if (event.keyCode === 13 && searchMobile.value.length === 0) {
@@ -219,15 +219,16 @@ function searchAnime() {
 
 async function searchResults() {
   const searchQuery = new URLSearchParams(window.location.search);
-  const fetchUrl = "https://gogoanime.consumet.org/search?keyw=" + searchQuery.get("q");
+  const pagination = searchQuery.get("page");
+  const fetchUrl = `https://gogoanime.consumet.org/search?keyw=${searchQuery.get("q")}&page=${pagination}`;
 
   // Alterar HTML
   const searchHeader2 = document.querySelector(".font-1-xl.search-query");
   searchHeader2.innerText = searchQuery.get("q");
 
   // Start Fetch
-  const fetchQuery = await fetch(fetchUrl);
-  const bodyFetch = await fetchQuery.json();
+  let fetchQuery = await fetch(fetchUrl);
+  let bodyFetch = await fetchQuery.json();
 
   // remove itens antigos
   document.querySelector(".search-results").replaceChildren();
@@ -258,6 +259,47 @@ async function searchResults() {
 
       // Append HTML
       document.querySelector(".search-results").append(wrapperLi);
+    }
+
+    // Paginação, próxima
+    if (bodyFetch.length === 20 && searchQuery.get("page") == 1) {
+      const pagWrapper = document.createElement("ul");
+      pagWrapper.setAttribute("class", "pagination-wrapper");
+      pagWrapper.innerHTML = `
+      <li><a href="${window.location.origin}/search.html?q=${searchQuery.get("q")}&page=${
+        Number(searchQuery.get("page")) + 1
+      }">Próxima</a>
+      `;
+      document.querySelector(".search-page .container").append(pagWrapper);
+    }
+
+    // Anterior e próxima
+    else if (bodyFetch.length === 20 && searchQuery.get("page") >= 2) {
+      const pagWrapper = document.createElement("ul");
+      pagWrapper.setAttribute("class", "pagination-wrapper");
+
+      pagWrapper.innerHTML = `
+      <li><a href="${window.location.origin}/search.html?q=${searchQuery.get("q")}&page=${
+        Number(searchQuery.get("page")) - 1
+      }">Anterior</a>
+      <li><a href="${window.location.origin}/search.html?q=${searchQuery.get("q")}&page=${
+        Number(searchQuery.get("page")) + 1
+      }">Próxima</a>
+      `;
+      document.querySelector(".search-page .container").append(pagWrapper);
+    }
+
+    // Somente anterior
+    else if (bodyFetch.length < 20 && searchQuery.get("page") >= 2) {
+      const pagWrapper = document.createElement("ul");
+      pagWrapper.setAttribute("class", "pagination-wrapper");
+
+      pagWrapper.innerHTML = `
+      <li><a href="${window.location.origin}/search.html?q=${searchQuery.get("q")}&page=${
+        Number(searchQuery.get("page")) - 1
+      }">Anterior</a>
+      `;
+      document.querySelector(".search-page .container").append(pagWrapper);
     }
   }
 
