@@ -337,6 +337,70 @@ async function searchResults() {
 
 searchAnime();
 
+async function releases() {
+  const animeItemWrapper = document.querySelector("div.grid-latest");
+  const popularItemWrapper = document.querySelector("div.grid-recent");
+
+  // Fetch últimos episódios
+  const searchQuery = new URLSearchParams(window.location.search);
+  const pagination = searchQuery.get("page");
+  const urlFetch = "https://gogoanime.consumet.org/recent-release?page=" + pagination;
+  const fetchRecent = await fetch(urlFetch);
+  const recentJson = await fetchRecent.json();
+
+  // Adiciona os últimos episódios ao grid.
+  const recentEpisodes = recentJson.map((e, i) => {
+    const animeItem = document.createElement("a");
+    animeItem.setAttribute("href", "./anime.html" + "?anime=" + e.animeTitle);
+    animeItem.classList.add("anime-item");
+    animeItem.innerHTML = `
+      <div class="cover">
+      <span class="episode font-2-mr">Episódio ${e.episodeNum}</span>
+      <img src="${e.animeImg}" alt="${e.animeTitle}" />
+      </div>
+      <span class="anime-title font-1-m">${e.animeTitle}</span>
+      `;
+
+    animeItemWrapper.append(animeItem);
+    if (document.querySelector(".lds-ellipsis")) document.querySelector(".lds-ellipsis").remove();
+  });
+
+  // Paginação, próxima
+  if (recentJson.length === 20 && searchQuery.get("page") == 1) {
+    const pagWrapper = document.createElement("ul");
+    pagWrapper.setAttribute("class", "pagination-wrapper");
+    pagWrapper.innerHTML = `
+    <li><a href="${window.location.origin}/releases.html?page=${Number(searchQuery.get("page")) + 1}">Próxima</a>
+    `;
+    document.querySelector(".releases").append(pagWrapper);
+  }
+
+  // Anterior e próxima
+  else if (recentJson.length === 20 && searchQuery.get("page") >= 2) {
+    const pagWrapper = document.createElement("ul");
+    pagWrapper.setAttribute("class", "pagination-wrapper");
+
+    pagWrapper.innerHTML = `
+    <li><a href="${window.location.origin}/releases.html?page=${Number(searchQuery.get("page")) - 1}">Anterior</a>
+    <li><a href="${window.location.origin}/releases.html?page=${Number(searchQuery.get("page")) + 1}">Próxima</a>
+    `;
+    document.querySelector(".releases").append(pagWrapper);
+  }
+
+  // Somente anterior
+  else if (recentJson.length < 20 && searchQuery.get("page") >= 2) {
+    const pagWrapper = document.createElement("ul");
+    pagWrapper.setAttribute("class", "pagination-wrapper");
+
+    pagWrapper.innerHTML = `
+    <li><a href="${window.location.origin}/releases.html?page=${Number(searchQuery.get("page")) - 1}">Anterior</a>
+    `;
+    document.querySelector(".releases").append(pagWrapper);
+  }
+}
+
+if (window.location.pathname.includes("releases.html")) releases();
+
 if (window.location.pathname === "/") recentEpisodes();
 
 if (window.location.pathname.includes("anime.html")) addAnimeDetails();
